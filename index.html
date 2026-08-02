@@ -35,7 +35,7 @@
       <div class="col-lg-8 text-center mb-4">
         <h1 class="display-6 fw-bold">Laguna S 2.1 122B vs Ornith 35B vs Qwen 3.6 35B</h1>
         <p class="lead text-body-secondary">
-          Each model got one shot to generate a CS-style FPS game. Only 1 attempt per model.
+          KAT-Coder V2.5 vs Ornith 35B vs Qwen 3.6 35B vs Laguna S 2.1 122B — each model got one shot to generate a CS-style FPS game. Only 1 attempt per model.
         </p>
       </div>
     </div>
@@ -64,7 +64,27 @@
       <div class="col-md-4">
         <div class="card h-100">
           <div class="card-header text-center">
-            <span class="badge bg-secondary fs-6"><i class="bi bi-award"></i> 2nd</span>
+            <span class="badge bg-warning text-dark fs-6"><i class="bi bi-award"></i> 2nd</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">KAT-Coder V2.5 Dev Q8_0</h5>
+            <p class="card-text small text-body-secondary">
+              <a href="https://huggingface.co/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF" target="_blank" rel="noopener" class="text-decoration-none">
+                <i class="bi bi-box-arrow-up-right"></i> huggingface.co/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF
+              </a>
+            </p>
+            <p class="card-text">Strong coding model. Solid FPS output with good structure.</p>
+          </div>
+          <div class="card-footer text-center">
+            <a href="kat-coder-v2.5-dev-q8-0.html" class="btn btn-primary w-100"><i class="bi bi-play-fill"></i> Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-header text-center">
+            <span class="badge bg-secondary fs-6"><i class="bi bi-award"></i> 3rd</span>
           </div>
           <div class="card-body">
             <h5 class="card-title">Qwen 3.6 35B-A3B UD-Q8_K_XL</h5>
@@ -84,7 +104,7 @@
       <div class="col-md-4">
         <div class="card h-100">
           <div class="card-header text-center">
-            <span class="badge bg-danger fs-6"><i class="bi bi-x-circle"></i> 3rd</span>
+            <span class="badge bg-danger fs-6"><i class="bi bi-x-circle"></i> 4th</span>
           </div>
           <div class="card-body">
             <h5 class="card-title">Laguna S 2.1 UD-Q4_K_XL</h5>
@@ -129,6 +149,7 @@
                     <th>Parameter</th>
                     <th>Laguna S 2.1 UD-Q4_K_XL</th>
                     <th>Ornith 35B UD-Q8_K_XL</th>
+                    <th>KAT-Coder V2.5 Dev Q8_0</th>
                     <th>Qwen 3.6 35B-A3B UD-Q8_K_XL</th>
                   </tr>
                 </thead>
@@ -137,54 +158,63 @@
                     <td>ctx-size</td>
                     <td>262144</td>
                     <td>262144</td>
+                    <td>—</td>
                     <td>262144</td>
                   </tr>
                   <tr>
                     <td>n-gpu-layers</td>
                     <td>all</td>
                     <td>all</td>
+                    <td>—</td>
                     <td>all</td>
                   </tr>
                   <tr>
                     <td>n-cpu-moe</td>
                     <td>46</td>
                     <td>40</td>
+                    <td>—</td>
                     <td>40</td>
                   </tr>
                   <tr>
                     <td>kv-offload</td>
                     <td>true</td>
                     <td>true</td>
+                    <td>—</td>
                     <td>true</td>
                   </tr>
                   <tr>
                     <td>cache-type-k/v</td>
                     <td>q8_0</td>
                     <td>q8_0</td>
+                    <td>—</td>
                     <td>q8_0</td>
                   </tr>
                   <tr>
                     <td>temp</td>
                     <td>0.7</td>
                     <td>0.6</td>
+                    <td>—</td>
                     <td>0.6</td>
                   </tr>
                   <tr>
                     <td>top-p</td>
                     <td>1.0</td>
                     <td>0.95</td>
+                    <td>—</td>
                     <td>0.95</td>
                   </tr>
                   <tr>
                     <td>top-k</td>
                     <td>20</td>
                     <td>20</td>
+                    <td>—</td>
                     <td>20</td>
                   </tr>
                   <tr>
                     <td>min-p</td>
                     <td>0.0</td>
                     <td>0.0</td>
+                    <td>—</td>
                     <td>0.0</td>
                   </tr>
                   <tr>
@@ -192,15 +222,18 @@
                     <td>1.0</td>
                     <td>—</td>
                     <td>—</td>
+                    <td>—</td>
                   </tr>
                   <tr>
                     <td>reasoning</td>
                     <td>on</td>
                     <td>on</td>
+                    <td>—</td>
                     <td>on</td>
                   </tr>
                   <tr>
                     <td>spec-type</td>
+                    <td>—</td>
                     <td>—</td>
                     <td>—</td>
                     <td>draft-mtp</td>
@@ -209,11 +242,13 @@
                     <td>spec-draft-n-max</td>
                     <td>—</td>
                     <td>—</td>
+                    <td>—</td>
                     <td>2</td>
                   </tr>
                   <tr>
                     <td>dry-multiplier / base</td>
                     <td>0.6 / 1.75</td>
+                    <td>—</td>
                     <td>—</td>
                     <td>—</td>
                   </tr>
