@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -235,7 +235,7 @@
   <script>
     function setTheme(mode) {
       if (mode === 'auto') {
-        document.documentElement.removeAttribute('data-bs-theme');
+        document.documentElement.setAttribute('data-bs-theme', window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       } else {
         document.documentElement.setAttribute('data-bs-theme', mode);
       }
