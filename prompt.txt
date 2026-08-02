@@ -1,1 +1,31 @@
-PASTE YOUR PROMPT HERE
+Act as a Senior Game Developer (client-side web games). Create a playable 3D First-Person Shooter (FPS) prototype inspired by Counter-Strike 1.6 on the `de_dust2` map.
+
+Tech stack: Vanilla JS / TS, Three.js (WebGL), HTML5 Web Audio API, and Pointer Lock API. The game must maintain a stable 60 FPS.
+
+1. CONTROLS AND CAMERA (Pointer Lock API):
+
+* Implement classic FPS controls: mouse controls camera view, cursor locking via Pointer Lock API upon clicking the screen.
+* Character movement: WASD + Space (jump). Set up gravity and collision physics with the floor and walls so the player does not fall through the map.
+
+2. MAP (Simplified de_dust2 using primitives):
+
+* Build the geometry of the iconic area of the `de_dust2` map (e.g., A Site and Long) WITHOUT loading heavy external files. Construct it using basic Three.js meshes (`BoxGeometry`).
+* Texturing: Color the walls in sandy yellow and Middle Eastern shades (`#d2b48c`, `#c2a677`), and add several crates (with a wooden texture or custom CSS/canvas art) as cover.
+
+3. WEAPONS, SHOOTING, AND AUDIO (Gameplay mechanics):
+
+* On-screen weapon: Attach a 3D assault rifle model (AK-47 or M4A1, assembled from elongated cylinders and boxes) in front of the camera (in the bottom right corner), featuring a subtle weapon bobbing effect while walking.
+* Shooting mechanic: Left mouse click fires the weapon. Use `THREE.Raycaster` casting directly from the center of the screen (crosshair) to detect hits on objects or targets. A bullet impact mark (decal or small black sprite) should appear at the impact point on walls for 3 seconds.
+* Web Audio API: Generate synthetic gunshot and reload sound effects programmatically using `AudioContext` (or include light audio placeholders) for immediate audio feedback. Add recoil animation (camera and weapon jump upward for a fraction of a second).
+
+4. ENEMIES (AI Bots):
+
+* Add 2–3 simple enemies to the scene (blue/red 3D capsules or cylinders).
+* Write basic AI logic: bots should slowly move toward the player. Each bot has a health bar (HP). Reduce their HP upon a successful hit via `Raycaster`. At 0 HP, the bot vanishes from the scene and respawns after 5 seconds.
+
+5. INTERFACE (HUD) AND 60 FPS OPTIMIZATION:
+
+* Render a minimalist crosshair at the center of the screen using HTML/CSS on top of the Canvas. Display a classic health and ammo counter at the bottom of the screen (`HP: 100` and `Ammo: 30/90`).
+* Optimize rendering: use a single `requestAnimationFrame` loop, and handle memory cleanup of unused geometry (`dispose`) to prevent frame drops.
+
+Output the game code as a single self-contained HTML file with inline CSS styles and JavaScript code. At the end, include brief instructions.
