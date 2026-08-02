@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Model Tests</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-body-tertiary">
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-controller"></i> LLM Model Tests
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-circle-half"></i> Theme
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#" onclick="setTheme('light'); return false;">Light</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setTheme('dark'); return false;">Dark</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setTheme('auto'); return false;">System</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-4">
+        <h1 class="display-6 fw-bold">Laguna S 2.1 122B vs Ornith 35B vs Qwen 3.6 35B</h1>
+        <p class="lead text-body-secondary">
+          Each model got one shot to generate a CS-style FPS game. Only 1 attempt per model.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-header text-center">
+            <span class="badge bg-warning text-dark fs-6"><i class="bi bi-trophy-fill"></i> 1st</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Ornith 35B UD-Q8_K_XL</h5>
+            <p class="card-text small text-body-secondary">
+              <a href="https://huggingface.co/unsloth/Ornith-1.0-35B-GGUF" target="_blank" rel="noopener" class="text-decoration-none">
+                <i class="bi bi-box-arrow-up-right"></i> huggingface.co/unsloth/Ornith-1.0-35B-GGUF
+              </a>
+            </p>
+            <p class="card-text">Cleanest output. Working FPS prototype with full HUD, crosshair, movement, and bots.</p>
+          </div>
+          <div class="card-footer text-center">
+            <a href="ornith-35b-q8-k-xl.html" class="btn btn-primary w-100"><i class="bi bi-play-fill"></i> Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-header text-center">
+            <span class="badge bg-secondary fs-6"><i class="bi bi-award"></i> 2nd</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Qwen 3.6 35B-A3B UD-Q8_K_XL</h5>
+            <p class="card-text small text-body-secondary">
+              <a href="https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF" target="_blank" rel="noopener" class="text-decoration-none">
+                <i class="bi bi-box-arrow-up-right"></i> huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF
+              </a>
+            </p>
+            <p class="card-text">Solid attempt with good visuals. Required a fix to become fully playable.</p>
+          </div>
+          <div class="card-footer text-center">
+            <a href="qwen3.6-35b-a3b-q8-k-xl.html" class="btn btn-primary w-100"><i class="bi bi-play-fill"></i> Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-header text-center">
+            <span class="badge bg-danger fs-6"><i class="bi bi-x-circle"></i> 3rd</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Laguna S 2.1 UD-Q4_K_XL</h5>
+            <p class="card-text small text-body-secondary">
+              <a href="https://huggingface.co/unsloth/Laguna-S-2.1-GGUF" target="_blank" rel="noopener" class="text-decoration-none">
+                <i class="bi bi-box-arrow-up-right"></i> huggingface.co/unsloth/Laguna-S-2.1-GGUF
+              </a>
+            </p>
+            <p class="card-text">Unplayable. Minimal output that didn't produce a working game.</p>
+          </div>
+          <div class="card-footer text-center">
+            <a href="laguna-s-2.1-122b-q4-k-xl.html" class="btn btn-primary w-100"><i class="bi bi-play-fill"></i> Play</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <i class="bi bi-chat-square-text"></i> Prompt
+          </div>
+          <div class="card-body">
+            <pre class="card-text small mb-0" id="prompt-content">Loading prompt...</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10">
+        <div class="card">
+          <div class="card-header">
+            <i class="bi bi-gear"></i> Run Parameters (llama.cpp router)
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Laguna S 2.1 UD-Q4_K_XL</th>
+                    <th>Ornith 35B UD-Q8_K_XL</th>
+                    <th>Qwen 3.6 35B-A3B UD-Q8_K_XL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ctx-size</td>
+                    <td>262144</td>
+                    <td>262144</td>
+                    <td>262144</td>
+                  </tr>
+                  <tr>
+                    <td>n-gpu-layers</td>
+                    <td>all</td>
+                    <td>all</td>
+                    <td>all</td>
+                  </tr>
+                  <tr>
+                    <td>n-cpu-moe</td>
+                    <td>46</td>
+                    <td>40</td>
+                    <td>40</td>
+                  </tr>
+                  <tr>
+                    <td>kv-offload</td>
+                    <td>true</td>
+                    <td>true</td>
+                    <td>true</td>
+                  </tr>
+                  <tr>
+                    <td>cache-type-k/v</td>
+                    <td>q8_0</td>
+                    <td>q8_0</td>
+                    <td>q8_0</td>
+                  </tr>
+                  <tr>
+                    <td>temp</td>
+                    <td>0.7</td>
+                    <td>0.6</td>
+                    <td>0.6</td>
+                  </tr>
+                  <tr>
+                    <td>top-p</td>
+                    <td>1.0</td>
+                    <td>0.95</td>
+                    <td>0.95</td>
+                  </tr>
+                  <tr>
+                    <td>top-k</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>min-p</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                  </tr>
+                  <tr>
+                    <td>repeat-penalty</td>
+                    <td>1.0</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>reasoning</td>
+                    <td>on</td>
+                    <td>on</td>
+                    <td>on</td>
+                  </tr>
+                  <tr>
+                    <td>spec-type</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>draft-mtp</td>
+                  </tr>
+                  <tr>
+                    <td>spec-draft-n-max</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>dry-multiplier / base</td>
+                    <td>0.6 / 1.75</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-top bg-body-tertiary py-3">
+    <div class="container text-center text-body-secondary small">
+      <p class="mb-0">Each model was given a single prompt and one attempt. No edits or second chances.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setTheme(mode) {
+      if (mode === 'auto') {
+        document.documentElement.removeAttribute('data-bs-theme');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', mode);
+      }
+      localStorage.setItem('theme', mode);
+    }
+
+    (function() {
+      var saved = localStorage.getItem('theme') || 'auto';
+      setTheme(saved);
+    })();
+
+    fetch('prompt.txt')
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        document.getElementById('prompt-content').textContent = text.trim();
+      })
+      .catch(function() {
+        document.getElementById('prompt-content').textContent = 'prompt.txt not found.';
+      });
+  </script>
+</body>
+</html>
